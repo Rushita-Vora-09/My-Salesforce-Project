@@ -1,0 +1,14 @@
+.THIS .row{ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 1rem 0;
+}
+.THIS .slds-m-right_small {
+    margin-top: 1.7rem;
+    width: 12%;
+}
+.THIS .slds-select {
+    width: 24%;
+    height: 70%;
+}

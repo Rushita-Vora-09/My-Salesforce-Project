@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MessageChannel xmlns="http://soap.sforce.com/2006/04/metadata/">
+    <description>Channal for communication between Account and Related Contact and Opportunity</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Account Contact Opportunity Channel</masterLabel>
+
+    <lightningMessageFields>
+       <fieldName>accountId</fieldName>
+       <description>Accocunt Id</description>
+   </lightningMessageFields>
+
+</MessageChannel >

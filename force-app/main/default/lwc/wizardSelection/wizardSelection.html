@@ -1,0 +1,90 @@
+<template>
+    
+    <lightning-card>
+    <lightning-progress-indicator current-step={currentStep} type="base" variant="base">
+        <lightning-progress-step label="Step 1" value="1" onclick={handleOnStepClick}></lightning-progress-step>
+        <lightning-progress-step label="Step 2" value="2" onclick={handleOnStepClick}></lightning-progress-step>
+        <lightning-progress-step label="Step 3" value="3" onclick={handleOnStepClick}></lightning-progress-step>
+    </lightning-progress-indicator>
+     
+    <template if:true={isStepOne}>
+        <div>
+            <lightning-card title="Select Object">
+                <div class="slds-m-around_medium">
+                    <lightning-combobox
+                        name="Search Accounts"
+                        label="Search Accounts"
+                        value={selectedAccountId}
+                        placeholder="Select an account"
+                        options={objOptions}
+                        onchange={handleChangeSelect}>
+                    </lightning-combobox>
+                </div>
+    
+            </lightning-card>
+    
+            <!-- display list of record related selected value -->
+            <template if:true={recList.length}>
+                <lightning-card title="Selected Object">
+                    <lightning-datatable
+                        key-field="id"
+                        data={recList} 
+                        columns={columnsForRec}
+                        selected-rows={selectedRecords}
+                        onchange={handleCheckboxChange}>
+                    </lightning-datatable>
+                </lightning-card> 
+            </template>
+        </div> 
+    </template>
+    <template if:true={isStepTwo}>
+        <div>
+            <lightning-card title="Draft an Email">
+
+                <div class="slds-m-around_medium">
+                    <lightning-input
+                        type="text"
+                        label="Subject"
+                        value={subject}
+                        onchange={handleSubjectChange}>
+                    </lightning-input>
+                    <br/>
+                        <lightning-input-rich-text
+                            label="Draft an Email"
+                            placeholder="Write something here....."
+                            value={emailBody}
+                            onchange={handleChangeDraft}>
+                        </lightning-input-rich-text>
+                </div>
+
+            </lightning-card>
+        </div>
+    </template>
+    <template if:true={isStepThree}>
+        <div>
+            <lightning-card title="Preview Email">
+                <div class="slds-m-around_medium">
+                    <p><b>Subject: </b> <lightning-formatted-text value={subject}></lightning-formatted-text></p>
+                    <p><b>Draft: </b><lightning-formatted-rich-text value={emailBody}></lightning-formatted-rich-text></p>
+                </div>
+            </lightning-card>
+        </div>
+    </template>
+    <div style="width:100%;display:flex; justify-content:space-between;">
+    <!-- <lightning-button-group > -->
+        <span>
+        <template if:true={isEnablePrev}>
+            <lightning-button class="slds-m-around_small"  label="Back" onclick={handlePrev}></lightning-button>
+        </template>
+        </span>
+        <template if:true={isEnableNext}>
+                <lightning-button class="slds-m-around_small" label="Next" variant="brand" onclick={handleNext}></lightning-button>
+        </template>
+        <template if:true={isEnableFinish}>
+            <lightning-button class="slds-m-around_small" label="Send" variant="brand" onclick={handleSendEmail}></lightning-button>
+        </template>
+    <!-- </lightning-button-group> -->
+</div>
+
+</lightning-card>
+</template>

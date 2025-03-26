@@ -1,0 +1,33 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <!-- Attributes to track progress -->
+    <aura:attribute name="currentStep" type="Integer" default="1"/>
+    <aura:attribute name="totalSteps" type="Integer" default="3"/>
+    <div class="body">
+
+    <lightning:card title="Multi-Step Form with Progress Indicator">
+        <!-- Progress Bar -->
+        <lightning:progressIndicator currentStep="{!v.currentStep+''}" type="path">
+            <lightning:progressStep label="Step 1" value="1"/>
+            <lightning:progressStep label="Step 2" value="2"/>
+            <lightning:progressStep label="Step 3" value="3"/>
+        </lightning:progressIndicator>
+
+        <!-- Form Sections -->
+        <aura:if isTrue="{!v.currentStep == 1}">
+            <div class="form-section"><p>Step 1 Content</p></div>
+        </aura:if>
+        <aura:if isTrue="{!v.currentStep == 2}">
+            <div class="form-section"><p>Step 2 Content</p></div>
+        </aura:if>
+        <aura:if isTrue="{!v.currentStep == 3}">
+            <div class="form-section"><p>Step 3 Content</p></div>
+        </aura:if>
+
+        <!-- Navigation Buttons -->
+        <div class="button-container">
+            <lightning:button label="Previous" onclick="{!c.handlePrevious}" disabled="{!v.currentStep == 1}"/>
+            <lightning:button label="Next" onclick="{!c.handleNext}" class="slds-m-left_small"/>
+        </div>
+    </lightning:card>
+</div>
+</aura:component>

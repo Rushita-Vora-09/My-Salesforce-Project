@@ -1,0 +1,19 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:appHostable" access="global">
+    <!-- Attribute for admin configurable -->
+    <aura:attribute name="imageUrl" type="String" default="https://loremflickr.com/320/240/nature"/>
+    <aura:attribute name="backgroundColor" type="String" default="#ffffff"/>
+    <aura:attribute name="description" type="String" default="Admin Configure Home Page"/>
+    <aura:attribute name="fontSize" type="String" default="16px"/>
+    <aura:attribute name="fontColor" type="String" default="#000000"/>
+    
+    <div>
+        <div class="container" style="{! 'background-color:' + v.backgroundColor }">
+            <br/>
+            <br/>
+            <img src="{!v.imageUrl}" class="image" alt="Image"/>
+            <p class="description" style="{!'color:'+ v.fontColor + '; font-size:' + v.fontSize}">{!v.description}</p>
+        </div>
+    </div>
+</aura:component> 
+
+<!-- <lightning:icon iconName='action:preview' alternativeText='preview' size='large' title='preview'></lightning:icon> -->

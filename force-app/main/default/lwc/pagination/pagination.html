@@ -1,0 +1,8 @@
+<!-- pagination.html -->
+<template>
+    <div class="slds-m-around_medium slds-text-align_center">
+        <lightning-button label="Previous" onclick={handlePrevious} disabled={isPrevDisabled}></lightning-button>
+        <span class="slds-m-horizontal_medium">Page {currentPage} of {totalPages}</span>
+        <lightning-button label="Next" onclick={handleNext} disabled={isNextDisabled}></lightning-button>
+    </div>
+</template>

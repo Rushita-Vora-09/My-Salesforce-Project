@@ -1,0 +1,35 @@
+<aura:component controller="AccountWrapperControllerAura" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute name="accountData" type="AccountWrapperControllerAura.AccountWrapperClass[]"/>
+    <!-- <aura:attribute name="accountData" type="sObject"/> --> <!-- optionally -->
+    <aura:attribute name="isLoading" type="Boolean" default="true"/>
+    <aura:handler name="init" value="{!this}" action="{!c.fetchAccounts}"/>
+
+    <aura:if isTrue="isLoading">
+        <lightning:spinner alternativeText="Loading..." />
+    </aura:if>
+    <lightning:card title="Accounts with Related Contacts ANd Opportunities">
+        <aura:iteration items="{!v.accountData}" var="accWrapper" >
+            <div class="account-section">
+                <h2>{!accWrapper.acc.Name}</h2>
+
+                <!-- Contact -->
+                <lightning:accordion  allowMultipleSectionsOpen="true">
+                    <lightning:accordionSection name="contacts" label="Contacts">
+                        <aura:iteration items="{!accWrapper.conList}" var="contact">
+                            <p><b>{!contact.Name}</b> - {!contact.Email}</p>
+                        </aura:iteration>
+                    </lightning:accordionSection>
+
+                <!-- opportunity --> 
+                    <lightning:accordionSection name="opportunities" label="Opportunities">
+                        <aura:iteration items="{!accWrapper.oppList}" var="opportunity">
+                            <p><b>{!opportunity.Name}</b> - Stage: {!opportunity.StageName}, Amount: {!opportunity.Amount}</p>
+                        </aura:iteration>
+                    </lightning:accordionSection>
+                </lightning:accordion>
+            </div>
+        </aura:iteration>
+    </lightning:card>
+
+</aura:component>
+

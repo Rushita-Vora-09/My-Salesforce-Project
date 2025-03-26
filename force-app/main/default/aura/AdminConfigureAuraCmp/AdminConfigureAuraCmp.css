@@ -1,0 +1,16 @@
+.THIS .container {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.THIS .image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.THIS .description {
+    margin-top: 10px;
+    font-weight: bold;
+}

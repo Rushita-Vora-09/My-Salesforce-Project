@@ -1,0 +1,13 @@
+.THIS .account-section {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f9f9f9;
+}
+
+.THIS h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0070d2;
+}

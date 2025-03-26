@@ -1,0 +1,73 @@
+<aura:component controller="DragAndDropControllerAura" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="account1" type="String"/>
+    <aura:attribute name="account2" type="String"/>
+    <aura:attribute name="accountContact1" type="Contact[]" access="global"/>
+    <aura:attribute name="accountContact2" type="Contact[]" access="global"/>
+    <aura:attribute name="contactCount1" type="Integer" default="0"/>
+    <aura:attribute name="contactCount2" type="Integer" default="0"/>
+    <aura:attribute name="oldAccountId" type="String" />
+    <aura:attribute name="newAccountId" type="String" />
+    <aura:attribute name="contactId" type="String"/>
+
+    <div class="slds-grid">
+            <div class="slds-col">
+                <h1 class="title">Account 1</h1>
+            <lightning:input class="searchInput" label="Search for Account 1" value="{!v.account1}" 
+                        onchange="{!c.handleSearch1}" placeholder="Search"/>
+                <br/>
+                <h1 class="title">Contacts</h1>
+            <table class="slds-table slds-table_bordered slds-m-top_medium">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th> 
+                    </tr> 
+                </thead>
+                <tbody ondragover="{!c.allowDrop}" ondrop="{!c.handleDropToAccount1}">
+                     <aura:iteration items="{!v.accountContact1}" var="contact1">
+                        <tr draggable="true" ondragstart="{!c.handleDragStart}" id="{!contact1.Id}">
+                            <td>{!contact1.Name}</td>
+                            <td>{!contact1.Phone}</td>
+                            <td>{!contact1.Email}</td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <div class="displayTotalContacts">
+                <p>Total Contacts in Account 1 : {!v.contactCount1}</p>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <h1 class="title">Account 2</h1>
+            <lightning:input class="searchInput" label="Search for Account 2"  value="{!v.account2}" 
+            onchange="{!c.handleSearch2}"  placeholder="Search"/>
+
+                <br/>
+                <h1 class="title">Contacts</h1>
+            <table class="slds-table slds-table_bordered slds-m-top_medium">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                
+                <tbody ondragover="{!c.allowDrop}" ondrop="{!c.handleDropToAccount2}">
+                    <aura:iteration items="{!v.accountContact2}" var="contact2">
+                        <tr draggable="true" ondragstart="{!c.handleDragStart}" id="{!contact2.Id}">
+                            <td>{!contact2.Name}</td>
+                            <td>{!contact2.Phone}</td>
+                            <td>{!contact2.Email}</td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <div class="displayTotalContacts">
+                <p>Total Contacts in Account 2 : {!v.contactCount2}</p>
+            </div>
+        </div>
+    </div>
+</aura:component>

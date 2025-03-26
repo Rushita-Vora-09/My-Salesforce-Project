@@ -1,0 +1,65 @@
+<aura:component controller="WizardAuraController" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickAction">
+
+    <aura:attribute name="currentStep" type="integer" default="1"/>
+    <aura:attribute name="accountData" type="Account" default="{ 'sobjectType': 'Account' }" />
+    <aura:attribute name="contactData" type="Contact" default="{ 'sobjectType': 'Contact' }"/>
+    <aura:attribute name="eventData" type="Event" default="{ 'sobjectType': 'Event' }"/>
+    <aura:attribute name="progress" type="integer" default="0"/>
+
+    <div class="container">
+        <!-- <div class="progressBar">
+            <lightning:progressBar value="{!v.progress}" size="large" />
+        </div> -->
+        <div class="progressBar">
+            <lightning:progressIndicator currentStep="{!v.currentStep+''}" type="path">
+                <lightning:progressStep label="Account" value="1"/>
+                <lightning:progressStep label="Contact" value="2"/>
+                <lightning:progressStep label="Event" value="3"/>
+            </lightning:progressIndicator>
+        </div>
+        <div class="formBox">
+
+        <aura:if isTrue="{! (v.currentStep == 1)}">
+            <h1 class="title" style="font-size: 2em; text-align:center;"> Create Account</h1>
+                    <lightning:input class="inputField"  label="Account Name" value="{!v.accountData.Name}" placeholder="Name"/>
+
+                    <lightning:input class="inputField"  label="Email" type="email" value="{!v.accountData.Email__c}" placeholder="Email"/>  
+
+                    <lightning:input class="inputField" type="tel" label="Phone" name="phone" value="{!v.accountData.Phone}" placeholder="phone"/>
+                    <lightning:select  class="inputField" name="select1" label="Rating">
+                        <option value="">--None--</option>
+                        <option value="Hot">Hot</option>
+                        <option value="Warm">Warm</option> 
+                        <option value="Cold">Cold</option>
+                    </lightning:select>
+        </aura:if>
+
+        <aura:if isTrue="{! (v.currentStep == 2)}">
+
+            <h1 class="title" style="font-size: 2em; text-align:center;"> Create Contact</h1>
+                    <lightning:input class="inputField" label="First Name" value="{!v.contactData.FirstName}"/>
+
+                    <lightning:input class="inputField" label="Last Name" value="{!v.contactData.LastName}" required="true"/>
+
+                    <lightning:input class="inputField" label="Email" type="email" value="{!v.contactData.Email}" />
+                    <lightning:input class="inputField" type="tel" label="Mobile" name="mobile" value="{!v.contactData.MobilePhone}" placeholder="Mobile"/>
+
+        </aura:if>
+
+        <aura:if isTrue="{! (v.currentStep == 3)}">
+            <h1 class="title" style="font-size: 2em; text-align:center;"> Create Event</h1>
+                    <lightning:input class="inputField" readonly="true" value="Wizard Task" label="Subject" />
+                    <lightning:input class="inputField" type="datetime" name="input3" label="Start Date-Time" required="true" value="{!v.eventData.StartDateTime}" />
+                    <lightning:input class="inputField" type="datetime" name="input3" label="End Date-Time" required="true" value="{!v.eventData.EndDateTime}" />
+        </aura:if>
+        <br/>
+        <br/>
+    <!-- prev disabled when currentStep == 1 -->
+        <div class="btn">
+            <lightning:button  label="Prev" title="Previous Step" onclick="{! c.handlePrevious }" disabled="{! v.currentStep==1 }"/>
+            <lightning:button variant="brand" label="Next" aura:id="nextButton" title="Next Step" onclick="{! c.handleNext }" />
+        </div>
+    </div>
+
+</div>
+</aura:component>

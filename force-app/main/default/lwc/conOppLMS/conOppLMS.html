@@ -1,0 +1,42 @@
+<template>
+    <!-- Display Contacts as a table form -->
+    <!-- if contact -->
+    <template if:true={contacts.length}>
+        <lightning-card title="Contacts">
+            <lightning-layout>
+                <lightning-layout-item padding="around-small" size="12">
+                    <lightning-datatable
+                        key-field="id"
+                        data={contacts}
+                        columns={columnsForContact}>
+                    </lightning-datatable>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+    </template>
+    <!-- if no contact -->
+    <template if:false={contacts.length}>
+        <lightning-card title="Contacts">
+            <p class="slds-m-around_medium">No Contacts found related to AccountId: {accountId} </p>
+        </lightning-card>
+    </template>
+
+    <template if:true={opportunities.length}>
+        <lightning-card title="Opportunities">
+            <lightning-layout>
+                <lightning-layout-item padding="around-small" size="12">
+                    <lightning-datatable
+                        key-field="id"
+                        data={opportunities}
+                        columns={columnsForOpportunity}>
+                    </lightning-datatable>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+    </template>
+    <template if:false={opportunities.length}>
+        <lightning-card title="Opportunities">
+            <p class="slds-m-around_medium">No Opportunities found related to AccountId: {accountId}</p>
+        </lightning-card>
+    </template>
+</template> 

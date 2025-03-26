@@ -1,0 +1,62 @@
+<template>
+    <div class="body">
+        <lightning-card title="Search with SOSL">
+            <div class="slds-p-around_medium lgc-bg container" >
+                <div class="box">
+                    <lightning-input type="text" label="Search" onchange={handleSearchChange} required="true" placeholder="Search With SOSL..."></lightning-input>
+                </div>
+                <div class="box">
+                    <lightning-combobox 
+                    label="Select Options" 
+                    data-pick-list-type="multiple" 
+                    value={selectedOptions} 
+                    placeholder="Select Objects"
+                    options={objectOptions}
+                    required
+                    onchange={handleObjectSelection}>
+                    </lightning-combobox>
+                </div>
+                <div class="box">
+                    <lightning-button class="btn" variant="brand" label="Search" title="Search" onclick={handleSearch}></lightning-button>
+                </div> 
+            </div>
+            <div class="slds-p-around_medium">
+                <template for:each={allObjects} for:item="obj">
+                    <div class="slds-p-right_small" key={obj} style="display:inline-block">
+                        <lightning-pill 
+                            label={obj} 
+                            name={obj}
+                            onremove={handleRemoveObject}>
+                        </lightning-pill>        
+                    </div>
+                </template>
+            </div>
+            <!-- check if there is data -->
+
+            <div>
+                <template for:each={searchResults} for:item="searchResult">
+                    <div key={searchResult.id} class="slds-p-around_medium lgc-bg outer-loop-div">
+                        <!-- ✅ Object Name as Title -->
+                        <h2 class="data-heading">{searchResult.id} Data</h2>
+                        <!-- if data  -->
+                        <template if:true={searchResult.records.length}>
+                            <lightning-datatable 
+                                class="display-results"
+                                key-field="Id"
+                                data={searchResult.records} 
+                                columns={columns}   
+                                onrowaction={handleRowAction}
+                                hide-checkbox-column>
+                            </lightning-datatable> 
+                        </template>
+                        <!-- if no data -->
+                        <template if:false={searchResult.records.length}>
+                            <p class="slds-p-around_medium slds-text-align_center">No Data Found in {searchResult.id} Object</p>
+                        </template>
+
+                    </div>
+                </template>
+            </div>
+        </lightning-card> 
+    </div>
+</template> 

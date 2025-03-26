@@ -1,0 +1,23 @@
+.THIS .searchInput {
+    width: 98%;
+    justify-self: center;
+}
+.THIS .title {
+    margin: 5px 10px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.THIS .slds-col {
+    width: 50%;
+    border : 1px solid rgb(195, 193, 193);
+    background-color: white;
+}
+.THIS .displayTotalContacts {
+    height: 50px;
+    font-size: 0.8rem;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    text-align: center;
+}

@@ -1,0 +1,7 @@
+<aura:component>
+    <aura:registerEvent name="ImgUploadEvent" type="c:ImgUploadEvent"/>
+    <aura:attribute name="uploadedFile" type="String"/>
+
+    <h2>Upload Image to Child Component</h2>
+    <lightning:input type="file" label="Upload File: " accept="image/*" onchange="{!c.handleFileUpload}"/>
+</aura:component>

@@ -1,0 +1,13 @@
+<template>
+    <!-- Change in below line -->
+    <div>
+        <c-child-comp child-property1="Hello world" onsend={storeMessage} ></c-child-comp>
+    </div>
+    <lightning-button label="Call Child Method" onclick={emptyChildProperty}></lightning-button>
+
+    <!-- Addithional Lines -->
+<lightning-card title="Latest Meassage From Child Component">
+    <p class="slds-p-left_small">{childMessage}</p>
+
+</lightning-card>
+</template>

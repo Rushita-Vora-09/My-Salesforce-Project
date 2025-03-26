@@ -1,0 +1,67 @@
+<aura:component controller="ContactControllerAura" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="accountName" type="String" /> 
+    <aura:attribute name="contacts" type="Contact[]"/>
+    <!-- <aura:attribute name="searchKey" type="String"/> -->
+    <aura:attribute name="fromContact" type="Integer" default="1"/>
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="pageSize" type="Integer" default="5"/>
+    <aura:attribute name="toContact" type="Integer" default="5"/>
+    <aura:attribute name="totalContacts" type="Integer"/>
+ 
+    <lightning:card title="Contacts">
+        <div class="slds-m-around_medium">
+            <!-- Search Box -->
+            <div class="row">
+                <span>
+                    <lightning:input aura:id="searchInput" label="Search here..." value="{!v.accountName}" 
+                        onchange="{!c.handleSearch}" placeholder="Search"/>
+                </span>
+            <!-- PickList for page display -->
+                <span class="slds-m-right_small">
+                    <label class="slds-m-horizontal_small slds-form-element__label" for="pageSizeId">Display Records: </label>
+                    <select class="slds-select" id="pageSizeId" name="page" label="" value="{!v.pageSize}" onchange="{!c.handlePageSize}">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </span>
+            </div>
+
+            <!-- Contacts Table -->
+            <table class="slds-table slds-table_bordered slds-m-top_medium">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.contacts}" var="contact">
+                        <tr>
+                            <td>{!contact.Name}</td>
+                            <td>{!contact.Phone}</td>
+                            <td>{!contact.Email}</td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+
+            <div class="slds-grid slds-m-top_medium">
+                <div class="slds-col slds-text-align_left"> 
+                    <span class="slds-m-horizontal_small">
+                        Showing {!v.fromContact} - {!v.toContact} From {!v.totalContacts}
+                    </span>
+                </div>
+                <div class="slds-col slds-text-align_right"> 
+                    <lightning:button label="Prev" onclick="{!c.previousPage}" disabled="{!v.fromContact == 1}"/>
+                    <lightning:button label="Next" variant="brand" onclick="{!c.nextPage}" disabled="{!v.pageNumber * v.pageSize >= v.totalContacts}"/>
+                </div>
+              </div>
+        </div>
+    </lightning:card>
+</aura:component>

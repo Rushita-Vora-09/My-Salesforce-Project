@@ -1,0 +1,25 @@
+<template>
+    <div>
+        <lightning-card title="Draft an Email">
+            <div class="slds-m-around_medium">
+                <lightning-input
+                    type="text"
+                    label="Subject"
+                    value={subject}
+                    onchange={handleSubjectChange}>
+                </lightning-input>
+                <br/>
+                    <lightning-input-rich-text
+                        label="Draft an Email"
+                        placeholder="Write something here....."
+                        value={emailBody}
+                        onchange={handleChangeDraft}>
+                    </lightning-input-rich-text>
+            </div>
+        <!-- send email button -->
+            <div class="slds-align_absolute-center">
+                <lightning-button  variant="brand" label="Send" onclick={handleSendEmail}></lightning-button>  
+            </div>  
+        </lightning-card>
+    </div>
+</template> 

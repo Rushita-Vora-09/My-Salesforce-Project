@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Upload Files " icon-name="action:add_file">
+        <div class="slds-m-around_medium">
+            <lightning-file-upload 
+                label="Attach receipt"
+                name="fileUploader"
+                accept={acceptedFormats}
+                record-id={recordId}
+                onuploadfinished={handleUploadFinished} 
+                multiple>
+            </lightning-file-upload>
+        </div>
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <template for:each={paginatedImages} for:item="imageUrl">
+                    <div class="slds-p-around_medium" key={imageUrl} style="display: inline-block;">
+                        <h2>{imageUrl.fileName}</h2>
+                        <img src={imageUrl.fileUrl} alt={imageUrl.fileName} style="width:200px;height:200px;" />
+                    </div>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+        <c-pagination total-pages={totalPages} onpagechange={handlePageChange}></c-pagination>
+    </lightning-card>
+</template>
+
+
