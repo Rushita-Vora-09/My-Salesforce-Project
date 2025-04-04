@@ -1,11 +1,11 @@
 import { LightningElement } from 'lwc';
 
-export default class ParentComp extends LightningElement {
+export default class ParentComp extends LightningElement { 
 
-    emptyChildProperty(event)
-    {
-        const childMessage=this.template.querySelector('c-child-comp');
-    }
+    // emptyChildProperty(event)
+    // {
+    //     const childMessage=this.template.querySelector('c-child-comp');
+    // }
 
     childMessage='No message received';
 

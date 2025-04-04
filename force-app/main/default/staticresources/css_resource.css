@@ -1,0 +1,74 @@
+.main {
+    background-color: rgb(64, 109, 108);
+    padding: 15px;
+    margin: 100px 350px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(87, 85, 85);
+}
+.middle {
+    background-color: rgb(219, 223, 224);
+    text-align: center;
+    border-radius: 5px;
+}
+.middle h1 {
+    color: rgb(87, 85, 85);
+    padding: 20px;
+}
+.middle form {
+    text-align: center;
+
+}
+table {
+    position: relative;
+    margin: 30px;
+}
+td {
+    padding: 5px;
+    text-align: left;
+    font-weight: 500;
+    margin-right: 10px ;
+
+}
+td label {
+    color: rgb(40, 145, 121);
+}
+.option {
+    color: rgb(87, 85, 85);
+    border-radius: 5px;
+}
+.input {
+    width: 90%;
+    border: 2px solid rgb(168, 168, 168);
+}
+#input {
+    width: 95%;
+    padding: 5px;
+    border: 2px solid rgb(168, 168, 168);
+}
+textarea {
+    border: 2px solid rgb(168, 168, 168);
+    border-radius: 5px;
+}
+td input {
+    padding: 5px;
+    border-radius: 8%;
+    width: fit-content;
+}
+#range {
+    width: 70%;
+    initial-value: 0;
+    accent-color:gray
+}
+button {
+    background-color: rgb(32, 178, 144);
+    color: white;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10%;
+}
+#btn_create button {
+    
+    height: 30px;
+    width: 70px;
+}

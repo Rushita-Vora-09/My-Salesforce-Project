@@ -46,4 +46,3 @@ export default class AccountLMS extends LightningElement {
         publish(this.messageContext, ACCOUNT_CONTACT_OPP_CHANNEL, payload);
     }
 }
-

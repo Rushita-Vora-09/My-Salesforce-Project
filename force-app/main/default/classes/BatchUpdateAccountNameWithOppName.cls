@@ -7,7 +7,7 @@ global class BatchUpdateAccountNameWithOppName implements Database.Batchable<sOb
         for(Opportunity opp : [SELECT Id, Name, AccountId FROM Opportunity WHERE AccountId != Null]) {
             oppsMap.put(opp.AccountId, opp);
             oppId.add(opp.AccountId);
-        }    
+        }     
     }
 
     global Database.QueryLocator start(Database.BatchableContext bc) {
@@ -22,15 +22,24 @@ global class BatchUpdateAccountNameWithOppName implements Database.Batchable<sOb
             accountsToUpdate.add(acc);
         }
         update accountsToUpdate;
-    }
+    } 
 
     global void finish(Database.BatchableContext bc){
         // execute any post-processing operations
         System.debug('Batch to update Account Name is Done');
     }
+
 }
 // execiute batch class :- 
 // BatchUpdateAccountNameWithOppName batch = new BatchUpdateAccountNameWithOppName();
 // Id jobId = Database.executeBatch(batch);
 // List<AsyncApexJob> jobs = [SELECT Id, Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :jobID];
 // System.debug(jobs.size());
+
+// Workbench Task-2
+// List<Account> accList = new List<Account>();
+// for (Integer i=1; i<=2000; i++) {
+// Account ac = new Account(Name = 'Account ' + i);
+// accList.add(ac);
+// }
+// insert accList;

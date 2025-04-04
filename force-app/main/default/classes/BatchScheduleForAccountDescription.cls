@@ -8,8 +8,7 @@ global class BatchScheduleForAccountDescription implements Database.Batchable<SO
     // Define the operations to perform on each batch
     global void execute(Database.BatchableContext bc, List<Account> accounts) {
         for (Account acc : accounts) {
-            // updated desctiption to current date and time
-            acc.Description = 'Last Updated Description on ' + System.now();
+            acc.Description = 'This is a test description';
             updateAccount.add(acc);
         }
         try {

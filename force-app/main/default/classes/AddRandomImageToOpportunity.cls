@@ -63,4 +63,3 @@ public class AddRandomImageToOpportunity {
 
 
 // <apex:page controller="myFutureButtonController" ></apex:page>
-

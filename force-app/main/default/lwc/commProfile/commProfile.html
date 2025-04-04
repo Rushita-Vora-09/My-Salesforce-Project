@@ -1,0 +1,65 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+
+    <template if:true={record}>
+        <div class="container">
+            <lightning-card title="User Profile" icon-name="standard:user">
+                <div class="data">
+                    <lightning-record-edit-form object-api-name={objectApiName} record-id={recordId} onsuccess={handleSuccess}>
+
+                    <!-- Grid Layout for Fields -->
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        
+                        <!-- Column 1 -->
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name={nameField}></lightning-input-field>
+                            <lightning-input-field field-name={emailField}></lightning-input-field>
+                            <lightning-input-field field-name={phoneField}></lightning-input-field>
+                            <lightning-input-field field-name={aliasField}></lightning-input-field>
+                            <lightning-input-field field-name={departmentField}></lightning-input-field>
+                            <lightning-input-field field-name={divisionField}></lightning-input-field>
+                        </div>
+
+                        <!-- Column 2 -->
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name={titleField}></lightning-input-field>
+                            <lightning-input-field field-name={companyField}></lightning-input-field>
+                            <lightning-input-field field-name={profileField}></lightning-input-field>
+                            <lightning-input-field field-name={userTypeField}></lightning-input-field> 
+                            <lightning-input-field field-name={activeField}></lightning-input-field>
+                            <lightning-input-field field-name={employeeNumberField}></lightning-input-field>
+                            <lightning-input-field field-name={managerField}></lightning-input-field>
+                        </div>
+
+                        <!-- Column 3 -->
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input-field field-name={timeZoneField}></lightning-input-field>
+                            <lightning-input-field field-name={localeField}></lightning-input-field>
+                            <lightning-input-field field-name={languageField}></lightning-input-field>
+                            <lightning-input-field field-name={addressField}></lightning-input-field>
+                            <lightning-input-field field-name={createdDateField}></lightning-input-field>
+                            <lightning-input-field field-name={lastLoginField}></lightning-input-field>
+                        </div>
+                    </div>
+
+                    <div class="slds-var-m-top_medium slds-text-align_center">
+                        <lightning-button variant="brand" type="submit" label="Save"></lightning-button>
+                    </div>
+
+                    </lightning-record-edit-form>
+                </div>
+            </lightning-card>
+        </div>
+    </template>
+
+    <template if:false={record}>
+        <div class="slds-illustration slds-illustration_small">
+            <div class="slds-text-longform slds-text-align_center">
+                <h3 class="slds-text-heading_medium slds-text-color_error">No Data</h3>
+                <p>Something went Wrong! Please try again...</p>
+            </div>
+        </div>
+    </template>
+</template>

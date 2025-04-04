@@ -1,0 +1,24 @@
+.body{
+    width: 100%;
+    height: 70px;
+    /* background-color: #f4f4f4; */
+    background-color: #d9e6f2;
+    padding-top: 10px;
+    border-top: 1px solid #204060;
+}
+.footer-links a {
+    margin: 0 10px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #264d73;
+}
+
+.footer-links a:hover {
+    font-weight: bold;
+    color: #204060;
+}
+.terms {
+    text-align: center;
+    margin-top: 10px;
+    color: #19334d;
+}

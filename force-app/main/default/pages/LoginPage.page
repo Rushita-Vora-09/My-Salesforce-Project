@@ -1,0 +1,41 @@
+<apex:page standardController="Contact" extensions="Auth">
+  <apex:form >
+      <apex:pageMessages id="pageMessages"/>
+      <apex:pageBlock title="Login Page" id="LoginPage" rendered="{!NOT(showRegistration) && !showForgotPassword}">
+          <apex:pageBlockSection >
+              <apex:inputText value="{!email}" label="Email" id="email"/>
+              <apex:inputSecret value="{!password}" label="Password" id="loginpw" />
+          </apex:pageBlockSection>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!loginDetail}" value="Login" />
+          </apex:pageBlockButtons>
+          <apex:pageBlockSection >
+              Don't have an Account? <apex:commandButton action="{!showRegistrationForm}" value="Register" />
+              Forgot Password? <apex:commandButton action="{!showForgotPasswordPage}" value="Forgot Password" />
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+      
+      <apex:pageBlock title="Registration Page" id="RegistrationPage" rendered="{!showRegistration}">
+          <apex:pageBlockSection >
+              <apex:inputText value="{!newUsername}" label="New User Name" id="newUname"/>
+              <apex:inputText value="{!newEmail}" label="New Email" id="newEmail"/>
+              <apex:inputSecret value="{!newPassword}" label="New Password" id="newPassword"/>
+          </apex:pageBlockSection>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!registerUser}" value="Register" />
+          </apex:pageBlockButtons>
+          <apex:pageBlockSection >
+              Already have an Account? <apex:commandButton action="{!showLoginForm}" value="Login" />
+		  </apex:pageBlockSection>
+      </apex:pageBlock>
+      
+      <apex:pageBlock title="Forgot Password" id="ForgotPasswordPage" rendered="{!showForgotPassword}">
+          <apex:pageBlockSection >
+              <apex:inputText value="{!forgotPasswordEmail}" label="Email" id="forgotPwEmail"/>
+          </apex:pageBlockSection>
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!sendResetPasswordEmail}" value="Get Email" />
+          </apex:pageBlockButtons>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

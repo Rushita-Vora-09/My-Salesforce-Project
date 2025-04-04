@@ -73,4 +73,4 @@ export default class DropboxLWC extends LightningElement {
                 alert(error.message);
             });
     }
-} 
+}

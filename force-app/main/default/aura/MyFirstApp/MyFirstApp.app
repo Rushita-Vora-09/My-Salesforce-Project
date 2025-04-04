@@ -6,6 +6,6 @@
     <!-- <c:WizardAuraCmp/> -->
     <!-- <c:progressNavigation/> -->
     <!-- <c:AccountOpportunityContact/> -->
-    <c:CustomDisplayAuraCmp/>
+    <c:AdminConfigureAuraCmp/>
     <!-- <c:ParentFileUploader/> -->
 </aura:application>

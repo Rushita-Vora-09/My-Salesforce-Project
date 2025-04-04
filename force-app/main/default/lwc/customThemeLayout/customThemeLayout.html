@@ -1,0 +1,25 @@
+<template>
+    <div class="theme-container" style="background-color: aliceblue;">
+        <!-- Header with Menu -->
+        <header class="header">
+            <div class="header-content">
+                <h1>{headerText}</h1>
+                <nav class="menu">
+                    <button class="menu-button" onclick={navigateToHome}>Home</button>
+                    <button class="menu-button" onclick={navigateToProfile}>My Profile</button>
+                    <button class="menu-button" onclick={navigateToLogout}>Logout</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <slot></slot>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 My Custom Community</p>
+        </footer>
+    </div>
+</template>

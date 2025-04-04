@@ -5,6 +5,7 @@ public with sharing class AccountWrapperControllerAura{
         @AuraEnabled public List<Contact> conList;
         @AuraEnabled public List<Opportunity> oppList;
 
+        
         public AccountWrapperClass(Account acc, List<Contact> conList, List<Opportunity> oppList){
             this.acc = acc;
             this.conList = conList;

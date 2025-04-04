@@ -48,5 +48,4 @@ export default class ConOppLMS extends LightningElement {
         });
         
     }
-} 
-
+}

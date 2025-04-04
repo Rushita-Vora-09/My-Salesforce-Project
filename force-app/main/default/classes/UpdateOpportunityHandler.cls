@@ -32,8 +32,7 @@ public with sharing class UpdateOpportunityHandler {
             try {
                 insert oppTask;
             } catch (DMLException e) {
-                System.debug('Error occured while creating Task for Opportunity'+e.getMessage());
-            }
+                System.debug('Error occured while creating Task for Opportunity'+e.getMessage());}
         }
     }
 }

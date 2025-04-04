@@ -1,0 +1,33 @@
+<apex:page controller="AccountOpportunityController">
+    <apex:form id="pageContent">
+        <!-- Account List -->
+        <apex:pageBlock title="Accounts" rendered="{!showAccountList}">
+            <apex:pageBlockTable value="{!pagedAccounts}" var="acc">
+                <apex:column headerValue="Account Name"> 
+                    <apex:commandLink value="{!acc.Name}" action="{!fetchOpportunities}">
+                        <apex:param name="accountId" value="{!acc.Id}" assignTo="{!selectedAccountId}"/>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+
+            <apex:commandButton value="Previous" action="{!prevAccountPage}" rerender="pageContent" disabled="{!accountPageNumber=1}"/>
+            <apex:outputText value=" Page {!accountPageNumber} " style="font-weight: bold;"/>
+            <apex:commandButton value="Next" action="{!nextAccountPage}" rerender="pageContent" disabled="{!(accountPageNumber * pageSize) >= totalAccountRecords}"/>
+        </apex:pageBlock>
+
+        <!-- Opportunities List -->
+        <apex:pageBlock title="Opportunities for {!selectedAccountName}" rendered="{!NOT(showAccountList)}">
+            <apex:commandButton value="Back to Accounts" action="{!backToAccounts}" rerender="pageContent"/>
+            <apex:pageBlockTable value="{!opportunities}" var="opp">
+                <apex:column headerValue="Name">{!opp.Name}</apex:column>
+                <apex:column headerValue="Stage">{!opp.StageName}</apex:column>
+                <apex:column headerValue="Amount">{!opp.Amount}</apex:column>
+                <apex:column headerValue="Close Date">{!opp.CloseDate}</apex:column>
+            </apex:pageBlockTable>
+            
+            <apex:commandButton value="Previous" action="{!prevOpportunityPage}" rerender="pageContent" disabled="{!opportunityPageNumber=1}"/>
+            <apex:outputText value=" Page {!opportunityPageNumber} " style="font-weight: bold;"/>
+            <apex:commandButton value="Next" action="{!nextOpportunityPage}" rerender="pageContent" disabled="{!(opportunityPageNumber * pageSize) >= totalOpportunityRecords}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

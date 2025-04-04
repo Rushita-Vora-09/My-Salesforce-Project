@@ -1,0 +1,13 @@
+.select-profile {
+    position: relative;
+    width : 35%;
+    justify-self: center;
+}
+.display-profile {
+    display: inline-block;
+    margin-top: 4px;
+}
+.next-btn {
+    position: absolute;
+    right: 10%;
+}

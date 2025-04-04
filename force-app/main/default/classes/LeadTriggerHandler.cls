@@ -3,5 +3,5 @@ public class LeadTriggerHandler {
         for (Lead l : newLeads) {
             l.Rating = 'Hot';
         }
-    } 
+    }
 }

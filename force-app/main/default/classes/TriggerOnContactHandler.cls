@@ -251,5 +251,6 @@ public with sharing class TriggerOnContactHandler {
                 con.Description = UserInfo.getName();
             }
         }
+
     }
 }

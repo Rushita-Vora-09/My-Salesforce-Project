@@ -11,6 +11,7 @@ export default class ComponentA extends LightningElement {
         const payload = {
             message: msgInput
         };
+
         publish(this.messageContext, COMPONENT_COMUNICATION_CHANNEL, payload);
     }
-} 
+}

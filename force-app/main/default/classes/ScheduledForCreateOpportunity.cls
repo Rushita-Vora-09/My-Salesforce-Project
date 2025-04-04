@@ -9,7 +9,7 @@ public with sharing class ScheduledForCreateOpportunity implements Schedulable {
             Opportunity opp = new Opportunity(Name = 'Opp' + count, StageName = 'Prospecting', CloseDate = Date.today().addDays(30));
             opps.add(opp);
             count++;
-        } while (count <= 10); 
+        } while (count <= 10);
 
         try {
             insert opps;

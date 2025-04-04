@@ -28,6 +28,7 @@ private class TestUpdateOpportunity {
 
         List<Task> taskList = [SELECT Id, Subject FROM Task WHERE Subject IN :subjects WITH SECURITY_ENFORCED];
         System.assertEquals(3, taskList.size(), 'All 3 Tasks should be inserted');
+
         
     }
 

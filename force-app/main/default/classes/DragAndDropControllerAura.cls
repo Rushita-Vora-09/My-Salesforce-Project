@@ -9,7 +9,7 @@ public with sharing class DragAndDropControllerAura {
             throw new AuraHandledException(e.getMessage());
         }
     } 
-    @AuraEnabled 
+    @AuraEnabled
     public static Integer getContactCount(String accountName){
         try {
             Integer count = [SELECT Count() FROM Contact WHERE Account.Name = :accountName WITH SECURITY_ENFORCED];

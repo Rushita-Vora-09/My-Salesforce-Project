@@ -1,0 +1,5 @@
+<apex:page >
+    <h1>Welcome to Our Site!</h1>
+    <p>This is the template for our Force.com site.</p>
+    <p>Feel free to explore and learn more about what we offer.</p>
+</apex:page>

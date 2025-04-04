@@ -1,5 +1,5 @@
 trigger FirstTrigger on Account (before insert, before update, before delete, after insert, after update, after delete, after undelete) {
-    System.debug('--- Trigger Execution Started ---');
+    System.debug('=== Trigger Execution Started ===');
     System.debug('Trigger.isExecuting: ' + Trigger.isExecuting);
     System.debug('Trigger.isInsert: ' + Trigger.isInsert);
     System.debug('Trigger.isUpdate: ' + Trigger.isUpdate);

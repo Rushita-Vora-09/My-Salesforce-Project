@@ -1,0 +1,48 @@
+<template>
+    <div class="slds-p-around_medium">
+        <!--  if displayOption -->
+        <template if:true={displayOption}>
+            <lightning-card title="Select Profile">
+                <div class="slds-p-around_medium slds-m-top_medium select-profile">
+                <lightning-select
+                        name="tickets"
+                        label="Choose Your Profile:"
+                        value={value}
+                        options={options}
+                        onchange={handleSelectProfile}
+                        required ></lightning-select>
+                    <br>
+                <p class="display-profile"> Your Profile is:  <b>{value}</b></p>
+                <lightning-button variant="brand" label="Next" title="Go to Next Step" onclick={handleNext} class="slds-m-left_x-small next-btn"></lightning-button>
+            </div>
+            </lightning-card>
+        </template>
+
+        <template if:true={displayTeacherRegistration}>
+            <lightning-card title="Teacher Registration Form">
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" label="First Name: " onchange={handleFirstName} placeholder="Enter First Name" required="true"></lightning-input>
+                    <lightning-input type="text" label="Last Name: " onchange={handleLastName} placeholder="Enter Last Name" required="true"></lightning-input>
+                    <lightning-input type="email" label="Email: " onchange={handleEmail} placeholder="Enter Email" required="true"></lightning-input>
+                    <br>
+                    <lightning-button variant="brand" label="Create User" title="Create Community User" onclick={handleCreateUser} class="slds-m-left_x-small next-btn"></lightning-button>
+                    <br>
+                </div>            
+            </lightning-card>
+        </template>
+
+        <template if:true={displayStudentRegistration}>
+            <lightning-card title="Student Registration Form">
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" label="First Name: " onchange={handleFirstName} placeholder="Enter First Name" required="true"></lightning-input>
+                    <lightning-input type="text" label="Last Name: " onchange={handleLastName} placeholder="Enter Last Name" required="true"></lightning-input>
+                    <lightning-input type="email" label="Email: " onchange={handleEmail} placeholder="Enter Email" required="true"></lightning-input>
+                    <br>
+                    <lightning-button variant="brand" label="Create User" title="Create Community User" onclick={handleCreateUser} class="slds-m-left_x-small next-btn"></lightning-button>
+                    <br>
+                </div>            
+            </lightning-card>
+        </template>
+    </div>
+
+</template>

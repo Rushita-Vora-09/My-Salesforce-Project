@@ -24,4 +24,4 @@ export default class ComponentB extends LightningElement {
         console.log('Received Payload: ',payload);
         this.receivedMessage = payload.message;
     }
-} 
+}

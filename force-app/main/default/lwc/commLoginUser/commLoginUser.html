@@ -1,0 +1,18 @@
+<template>
+    <div class="card">
+        <lightning-card title="Login">
+            <div class="form ">
+                <lightning-input label="Username" value={username} onchange={handleUserName} class="input" placeholder="Enter Username"></lightning-input>
+                <lightning-input type="password" label="Password" value={password} onchange={handlePass} class="input" placeholder="Enter Password"></lightning-input>
+                <br>
+                <lightning-button label="Login" variant="brand" onclick={handleLogin}></lightning-button>
+                <br>
+                <p if:true={errorMessage} class="error">{errorMessage}</p>
+                <div class="slds-m-top_xx-small">
+                    <lightning-button variant="base" label="Forgot Your password?" title="Forgot Your password?" onclick={handleForgotPassword} class="slds-m-left_x-small btn"></lightning-button>
+                    <!-- <p><lightning-formatted-url value="/https://mvclouds-df-dev-ed.develop.my.site.com/stportal/Forgot_Password" tooltip="Forgot Password" label="Forgot Your password?" target="_blank" ></lightning-formatted-url></p> -->
+                </div>
+            </div>
+        </lightning-card>
+    </div>
+</template>

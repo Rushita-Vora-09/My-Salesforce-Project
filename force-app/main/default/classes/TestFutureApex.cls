@@ -10,4 +10,4 @@ private class TestFutureApex {
         ft.someAction();
         Test.stopTest();
     }
-} 
+}

@@ -1,0 +1,34 @@
+<template>
+    <!-- display all students  -->
+    <div class="container">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+        <template if:true={students}>
+
+            <template for:each={students} for:item="student">
+                <div key={student.Id} class="slds-box slds-box_x-small slds-m-around_x-small slds-align_center">
+                    <lightning-button variant="base" label={student.Name} title={student.Name} onclick={handleShowDetail} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </template>
+        </template>
+        
+        <!-- display student detail page -->
+        <template if:true={studentDetail}>
+            <!-- display detail -->
+             <template if:true={detail}>
+                 <div class="slds-box slds-box_x-small slds-m-around_x-small slds-align_center">
+                     <lightning-button variant="base" label={detail.Name} title={detail.Name} onclick={handleShowDetail} class="slds-m-left_x-small"></lightning-button>
+                     <p class="slds-text-heading_medium">Student Detail</p>
+                     <p>Id: {detail.Id}</p>
+                     <p>Name: {detail.Name}</p>
+                     <p>Email: {detail.Email__c}</p>
+                     <p>Phone: {detail.Mobile_no__c}</p>
+                     <p>Parent: {detail.Parent__c}</p>
+                     <p>Teacher (Contact): {detail.Teacher_Contact__c}</p>
+                     <p>Age: {detail.Age__c}</p>
+                     </div>
+             </template>
+        </template>
+    </div>
+</template> 

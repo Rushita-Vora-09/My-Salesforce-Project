@@ -203,4 +203,4 @@ export default class WizardSelection extends LightningElement {
         this.emailBody = '';
         this.selectedRecords = [];
     }
-} 
+}
