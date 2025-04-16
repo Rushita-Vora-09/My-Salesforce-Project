@@ -1,0 +1,6 @@
+.THIS .flow-container {
+    height: calc(100vh - 300px);
+    width: 50%;
+    margin-top: 60px;
+    justify-self: center;
+}

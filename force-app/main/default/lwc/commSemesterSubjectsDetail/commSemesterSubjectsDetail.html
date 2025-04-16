@@ -3,11 +3,18 @@
         <template if:true={isLoading}>
             <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
         </template>
-            <h2 class="slds-text-heading_small slds-m-bottom_x-small">{semester}</h2>
+
+        <template if:true={semester}>
+            <h2 class="slds-text-heading_medium slds-m-bottom_small">Semester: {semester}</h2>
+        </template>
+
+        <template if:true={subjects}>
+            <div class="slds-text-title_bold slds-m-bottom_x-small">Subjects:</div>
             <template for:each={subjects} for:item="subject">
-                <div key={subject.Id} class="slds-box slds-box_x-small slds-m-around_x-small slds-align_center">
-                    <div class="slds-text-heading_small">{subject.Name}</div>
+                <div key={subject} class="slds-box slds-box_x-small slds-m-around_x-small">
+                    {subject}
                 </div>
+            </template>
         </template>
     </div>
 </template>

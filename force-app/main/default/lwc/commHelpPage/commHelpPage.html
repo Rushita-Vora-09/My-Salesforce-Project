@@ -1,0 +1,31 @@
+<template>
+    <div class="container">
+        <div class="title">
+            <div class="heading">
+                <p class="heading-text">
+                    {label.HELP_PAGE}
+                    <br>
+                    {label.HELP_PAGE1}
+                </p>
+                <p class="para">{label.HELP_PARA}</p>
+                <lightning-button variant="brand" label={label.BTN1} title={label.BTN1} onclick={handleClick} class="slds-m-left_x-small btn"></lightning-button>
+                <lightning-button variant="brand-outline" label={label.BTN2} title={label.BTN2} onclick={handleClick} class="slds-m-left_x-small btn"></lightning-button>
+            </div>
+            <img src={HelpPageImage} alt="Help Page Image" class="help-image"/>
+        </div>
+        <div class="box">
+            <div class="one">
+                <h2>{label.ONE}</h2>
+                <p>{label.ONEPARA}</p>
+            </div>
+            <div class="two">
+                <h2>{label.TWO}</h2>
+                <p>{label.TWOPARA}</p>
+            </div>
+            <div class="three">
+                <h2>{label.THREE}</h2>
+                <p>{label.THREEPARA}</p>
+            </div>
+        </div>
+    </div>
+</template>

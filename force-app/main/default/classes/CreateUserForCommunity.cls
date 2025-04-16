@@ -4,7 +4,14 @@ public without sharing class CreateUserForCommunity {
     public static String getCurrentUserId() {
         return UserInfo.getUserId();
     }
+
+    @AuraEnabled
+    public static String getCurrentUserProfileName() {
+        return [SELECT Profile.Name FROM User WHERE Id = :UserInfo.getUserId()].Profile.Name;
+    }
     
+
+
     // create teacher user 
     @AuraEnabled
     public static void createUser(String firstName, String lastName, String email,String profileName){
@@ -134,7 +141,7 @@ public without sharing class CreateUserForCommunity {
     public static Student__c getStudentDetail(String recordId){
         // get student detail by id
         try {
-            Student__c student = [SELECT Id, Name, Email__c, Age__c, Mobile_no__c, Parent__c, Teacher_Contact__c FROM Student__c WHERE Id = :recordId WITH SECURITY_ENFORCED];
+            Student__c student = [SELECT Id, Name, Email__c, Age__c, Mobile_no__c, Parent__c,Feedback__c, Teacher_Contact__c FROM Student__c WHERE Id = :recordId];
             System.debug('student: '+student);
             if(student != null) {
                 return student;
@@ -146,7 +153,18 @@ public without sharing class CreateUserForCommunity {
             throw new AuraHandledException(e.getMessage());
         }
     }
-
+    
+    @AuraEnabled
+    public static void updateStudentFeedback(Id recordId, String feedback) {
+        try {
+            Student__c student = [SELECT Id, Feedback__c FROM Student__c WHERE Id = :recordId LIMIT 1];
+            student.Feedback__c = feedback;
+            update student;
+        } catch (Exception e) {
+            throw new AuraHandledException('Failed to save feedback: ' + e.getMessage());
+        }
+    }
+    
     @AuraEnabled
     public static string getSemester1() {
         String conId = [SELECT Id, Name, contactId FROM User WHERE Id = :UserInfo.getUserId()].Id;
@@ -165,7 +183,7 @@ public without sharing class CreateUserForCommunity {
         String conId = [SELECT Id, Name, ContactId FROM User WHERE Id = :UserInfo.getUserId()].ContactId;
         System.debug('Contact ID: ' + conId);
         
-        List<Student__c> students = [SELECT Id, Semester__c FROM Student__c WHERE Teacher_Contact__c = :conId WITH SECURITY_ENFORCED];
+        List<Student__c> students = [SELECT Id, Semester__c FROM Student__c WHERE Teacher_Contact__c = :conId];
         System.debug('Students: ' + students);
         
         if (!students.isEmpty()) {
@@ -173,6 +191,19 @@ public without sharing class CreateUserForCommunity {
         } else {
             return null;
         }
+    }
+
+    @AuraEnabled
+    public static string getUrl() {
+        String communityUrl = URL.getOrgDomainUrl().toExternalForm(); // Get the base domain
+        System.debug('Community URL: ' + communityUrl);
+
+        // If the code runs within a community, you can fetch the context using `Network`
+        String networkId = Network.getNetworkId();
+        String fullCommunityUrl = URL.getOrgDomainUrl().toExternalForm() + '/s/'    ;
+        System.debug('Full Community URL: ' + fullCommunityUrl);
+        
+        return Network.getLoginUrl(Network.getNetworkId());
     }
 
 }

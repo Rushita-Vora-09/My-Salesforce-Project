@@ -2,9 +2,9 @@ import { LightningElement, track } from 'lwc';
 import getSemester from '@salesforce/apex/CreateUserForCommunity.getSemester';
 
 export default class CommSemesterSubjectsDetail extends LightningElement {
-    @track isLoading = true; // Initialize as true to show the spinner
-    semester;
-    subjects = [];
+    @track isLoading = true;
+    @track semester;
+    @track subjects = [];
 
     connectedCallback() {
         getSemester()
@@ -36,11 +36,11 @@ export default class CommSemesterSubjectsDetail extends LightningElement {
                         break;
                 }
 
-                this.isLoading = false; // Hide the spinner after loading
+                this.isLoading = false;
             })
             .catch(error => {
                 console.error(error);
-                this.isLoading = false; // Ensure spinner hides on error
+                this.isLoading = false;
             });
     }
 }

@@ -1,5 +1,5 @@
-<template>
-    <!-- display all students  -->
+<!-- <template>
+    display all students 
     <div class="container">
         <template if:true={isLoading}>
             <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
@@ -8,27 +8,133 @@
 
             <template for:each={students} for:item="student">
                 <div key={student.Id} class="slds-box slds-box_x-small slds-m-around_x-small slds-align_center">
-                    <lightning-button variant="base" label={student.Name} title={student.Name} onclick={handleShowDetail} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="base" label={student.Name} title={student.Name} data-id={student.Id} onclick={handleShowDetail} class="slds-m-left_x-small btn"></lightning-button>
                 </div>
             </template>
         </template>
         
-        <!-- display student detail page -->
+        display student detail page
         <template if:true={studentDetail}>
-            <!-- display detail -->
-             <template if:true={detail}>
-                 <div class="slds-box slds-box_x-small slds-m-around_x-small slds-align_center">
-                     <lightning-button variant="base" label={detail.Name} title={detail.Name} onclick={handleShowDetail} class="slds-m-left_x-small"></lightning-button>
-                     <p class="slds-text-heading_medium">Student Detail</p>
-                     <p>Id: {detail.Id}</p>
-                     <p>Name: {detail.Name}</p>
-                     <p>Email: {detail.Email__c}</p>
-                     <p>Phone: {detail.Mobile_no__c}</p>
-                     <p>Parent: {detail.Parent__c}</p>
-                     <p>Teacher (Contact): {detail.Teacher_Contact__c}</p>
-                     <p>Age: {detail.Age__c}</p>
-                     </div>
-             </template>
+            display detail
+            <template if:true={detail}>
+                <div class="slds-box slds-box_x-small slds-m-around_x-small slds-align_center">
+                    <lightning-button variant="base" label={detail.Name} title={detail.Name} onclick={handleShowDetail} class="slds-m-left_x-small"></lightning-button>
+                    <p class="slds-text-heading_medium">Student Detail</p>
+                    <p>Id: {detail.Id}</p>
+                    <p>Name: {detail.Name}</p>
+                    <p>Email: {detail.Email__c}</p>
+                    <p>Phone: {detail.Mobile_no__c}</p>
+                    <p>Parent: {detail.Parent__c}</p>
+                    <p>Teacher (Contact): {detail.Teacher_Contact__c}</p>
+                    <p>Age: {detail.Age__c}</p>
+                </div>
+                <lightning-button label="Back" onclick={handleBack} class="slds-m-top_small"></lightning-button>
+            </template>
         </template>
     </div>
-</template> 
+</template>  -->
+
+<template>
+    <div class="container slds-p-around_medium">
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+        </template>
+
+        <!-- Student List -->
+        <template if:true={students}>
+            <template if:false={displayStudentDetail}>
+                <p class="slds-text-heading_medium slds-m-bottom_medium">Student List</p>
+                <div class="slds-grid slds-wrap">
+                    <template for:each={students} for:item="student">
+                        <div key={student.Id} class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-card>
+                                <div class="slds-p-around_small">
+                                    <lightning-button
+                                        variant="base"
+                                        label={student.Name}
+                                        title={student.Name}
+                                        data-id={student.Id}
+                                        onclick={handleShowDetail}
+                                        class="slds-text-link slds-text-heading_small">
+                                    </lightning-button>
+                                </div>
+                            </lightning-card>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <!-- Student Detail View -->
+        <template if:true={displayStudentDetail}>
+            <lightning-card title="Student Details" class="slds-m-top_medium">
+                <div class="slds-p-around_medium">
+                    <p><strong>Id:</strong> {detail.Id}</p>
+                    <p><strong>Name:</strong> {detail.Name}</p>
+                    <p><strong>Email:</strong> {detail.Email__c}</p>
+                    <p><strong>Phone:</strong> {detail.Mobile_no__c}</p>
+                    <p><strong>Parent:</strong> {detail.Parent__c}</p>
+                    <p><strong>Teacher (Contact):</strong> {detail.Teacher_Contact__c}</p>
+                    <p><strong>Age:</strong> {detail.Age__c}</p>
+                    <!-- <p><strong>Feedback:</strong> {detail.Feedback__c}</p> -->
+                    <p><strong>Feedback:</strong> <span lwc:dom="manual" class="feedback-output"></span></p>
+
+
+                    <!-- Feedback Section -->
+                    <div class="slds-m-top_medium">
+                        <!-- <lightning-textarea
+                            label="Teacher Feedback (Emojis & Comments)"
+                            placeholder="😊 Great performance! Needs improvement in math..."
+                            value={feedback}
+                            onchange={handleFeedbackChange}>
+                        </lightning-textarea> -->
+
+                        <!-- Emoji Picker -->
+                    <div class="slds-m-bottom_small">
+                        <label class="slds-form-element__label">Emoji Feedback:</label>
+                        <div class="slds-button-group" role="group">
+                            <button class="emoji-button" data-emoji="😀" onclick={selectEmoji}>😀</button>
+                            <button class="emoji-button" data-emoji="😊" onclick={selectEmoji}>😊</button>
+                            <button class="emoji-button" data-emoji="😐" onclick={selectEmoji}>😐</button>
+                            <button class="emoji-button" data-emoji="😔" onclick={selectEmoji}>😔</button>
+                            <button class="emoji-button" data-emoji="😡" onclick={selectEmoji}>😡</button>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Textarea -->
+                    <lightning-textarea
+                        label="Feedback"
+                        value={feedback}
+                        onchange={handleFeedbackChange}
+                        placeholder="Add emojis and comments here...">
+                    </lightning-textarea>
+
+
+                        
+
+                    <!-- Feedback Buttons in One Line -->
+                        <div class="slds-grid slds-grid_align-spread slds-m-top_medium">
+                            <!-- Back Button on Left -->
+                            <lightning-button
+                                variant="neutral"
+                                label="Back to List"
+                                onclick={handleBack}>
+                            </lightning-button>
+
+                            <!-- Submit Feedback Button on Right -->
+                            <lightning-button
+                                variant="brand"
+                                label="Submit Feedback"
+                                onclick={submitFeedback}>
+                            </lightning-button>
+                        </div>
+
+                    </div>
+
+            
+                </div>
+            </lightning-card>
+        </template>
+    </div>
+</template>
